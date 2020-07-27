@@ -2,8 +2,7 @@
 
 Just started today.
 I have created only the skeleton code which works with the built in method sort()
-I will keep updating. 
-I will devote two hours everyday here. 
+I will keep updating by devoting two hours everyday here. 
 
 Goal: 
 
