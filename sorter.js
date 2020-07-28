@@ -31,21 +31,45 @@ sortButton.addEventListener("click", function () {
   });
 
   afterSort.innerHTML = numList;
+  draw_chart(numList);
 });
 
 BubbleBtn.addEventListener("click", function () {
-  var swapped;
+  let len = numList.length;
+  let swapped;
   do {
     swapped = false;
-    for (var i = 0; i < numList.length - 1; i++) {
+    for (let i = 0; i < len; i++) {
       if (numList[i] > numList[i + 1]) {
-        var temp = numList[i];
+        let tmp = numList[i];
         numList[i] = numList[i + 1];
-        numList[i + 1] = temp;
+        numList[i + 1] = tmp;
         swapped = true;
       }
     }
   } while (swapped);
 
   afterSort.innerHTML = numList;
+  draw_chart(numList);
 });
+
+// buidling chart chart
+
+function draw_chart(a) {
+  var chart = new Chart(myChart, {
+    //type of the chart
+    type: "bar",
+    data: {
+      labels: a,
+      datasets: [
+        {
+          label: "My first chart drawing",
+          background: "rgb(255, 99, 132)",
+          data: a,
+        },
+      ],
+    },
+
+    options: { responsive: false },
+  });
+}
