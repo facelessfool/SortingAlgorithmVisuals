@@ -10,11 +10,17 @@ numBoxElement.addEventListener("keypress", check);
 function check(event) {
   if (event.keyCode == 13) {
     var num = numBoxElement.value;
-    numList.push(num);
-    console.log(numList);
-    numBoxElement.value = "";
 
-    enteredNumbers.innerHTML = numList;
+    if (isNaN(num)) {
+      alert("not a number!");
+      numBoxElement.value = "";
+    } else {
+      numList.push(num);
+      console.log(numList);
+      numBoxElement.value = "";
+
+      enteredNumbers.innerHTML = numList;
+    }
   }
 }
 
