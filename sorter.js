@@ -34,23 +34,23 @@ sortButton.addEventListener("click", function () {
   draw_chart(numList);
 });
 
-BubbleBtn.addEventListener("click", function () {
-  let len = numList.length;
-  let swapped;
-  do {
-    swapped = false;
-    for (let i = 0; i < len; i++) {
-      if (numList[i] > numList[i + 1]) {
-        let tmp = numList[i];
-        numList[i] = numList[i + 1];
-        numList[i + 1] = tmp;
-        swapped = true;
-      }
+function BubbleSort() {
+  let length = numList.length;
+  for (let i = 1; i < length; i++) {
+    let key = numList[i];
+    let j = i - 1;
+    while (j >= 0 && numList[j] > key) {
+      numList[j + 1] = numList[j];
+      j = j - 1;
     }
-  } while (swapped);
+    numList[j + 1] = key;
+  }
+  return numList;
+}
 
+BubbleBtn.addEventListener("click", function () {
+  BubbleSort();
   afterSort.innerHTML = numList;
-  draw_chart(numList);
 });
 
 // buidling chart chart
