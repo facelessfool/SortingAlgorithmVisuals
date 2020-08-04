@@ -1,9 +1,10 @@
 var NumList = document.querySelector(".numbers");
 var BubbleElement = document.querySelector(".bubbleSort");
 var InsertElement = document.querySelector(".insertionSort");
+var myChart = document.querySelector(".myChart");
 var btn1 = document.querySelector(".btn1");
 var btn2 = document.querySelector(".btn2");
-
+var listoflists = [];
 //generate random numbers
 
 function RandomNumberGen(n) {
@@ -19,6 +20,36 @@ function RandomNumberGen(n) {
 var list1 = RandomNumberGen(10);
 NumList.innerHTML = list1;
 
+//chart
+
+var chart = new Chart(myChart, {
+  //type of the chart	});
+  type: "bar",
+  data: {
+    labels: list1,
+    datasets: [
+      {
+        label: "numbers",
+        background: "rgb(255, 99, 132)",
+        data: list1,
+      },
+    ],
+  },
+
+  options: { responsive: false },
+});
+
+function updateChart(newList) {
+  var n = newList.length;
+
+  for (let i = 0; i < n; i++) {
+    chart.data.datasets[0].data = newList[i];
+
+    setInterval(() => {
+      chart.update();
+    }, 2000);
+  }
+}
 //Bubble Sort
 function BubbleSort(list1) {
   var len = list1.length;
@@ -26,11 +57,16 @@ function BubbleSort(list1) {
 
   var isSorted = false;
 
+  var j = 0;
   while (!isSorted) {
     isSorted = true;
     for (let i = 0; i < lastSorted; i++) {
       //display the simulation taking place
-      console.log(list1);
+
+      // console.log(list1);
+      listoflists.push(list1);
+
+      console.log("list of lists:", listoflists);
       if (list1[i] > list1[i + 1]) {
         var temp = list1[i];
         list1[i] = list1[i + 1];
@@ -40,6 +76,8 @@ function BubbleSort(list1) {
     }
     lastSorted -= 1;
   }
+
+  updateChart(listoflists);
 
   return list1;
 }
