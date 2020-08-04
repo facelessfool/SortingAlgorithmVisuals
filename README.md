@@ -9,7 +9,7 @@ Goal:
   Build a sorting algorithm visualiser with the following options:
 
      implement 
-          a)Selection Sort
-          b)Bubble Sort
-          c)Insertion Sort
-          d)Merge Sort
+          a)Bubble Sort
+          b)Insertion Sort
+          c)Quick Sort
+          d)Merge Sort 
