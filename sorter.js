@@ -1,75 +1,83 @@
-var numElement = document.getElementById("numbers");
-var numBoxElement = document.querySelector("#num-box");
-var enteredNumbers = document.querySelector(".numbersEntered");
-var sortButton = document.querySelector("#sortButton");
-var afterSort = document.querySelector(".afterSort");
-var BubbleBtn = document.querySelector("#Bubble");
-let numList = [];
+var NumList = document.querySelector(".numbers");
+var BubbleElement = document.querySelector(".bubbleSort");
+var InsertElement = document.querySelector(".insertionSort");
+var btn1 = document.querySelector(".btn1");
+var btn2 = document.querySelector(".btn2");
 
-numBoxElement.addEventListener("keypress", check);
+//generate random numbers
 
-function check(event) {
-  if (event.keyCode == 13) {
-    var num = numBoxElement.value;
+function RandomNumberGen(n) {
+  var nums = [];
+  while (nums.length < n) {
+    var r = Math.floor(Math.random() * 100) + 1;
+    if (nums.indexOf(r) === -1) nums.push(r);
+  }
+  console.log("random num: ", nums);
+  return nums;
+}
 
-    if (isNaN(num)) {
-      alert("not a number!");
-      numBoxElement.value = "";
-    } else {
-      numList.push(num);
-      console.log(numList);
-      numBoxElement.value = "";
+var list1 = RandomNumberGen(10);
+NumList.innerHTML = list1;
 
-      enteredNumbers.innerHTML = numList;
+//Bubble Sort
+function BubbleSort(list1) {
+  var len = list1.length;
+  var lastSorted = len - 1;
+
+  var isSorted = false;
+
+  while (!isSorted) {
+    isSorted = true;
+    for (let i = 0; i < lastSorted; i++) {
+      //display the simulation taking place
+      console.log(list1);
+      if (list1[i] > list1[i + 1]) {
+        var temp = list1[i];
+        list1[i] = list1[i + 1];
+        list1[i + 1] = temp;
+        isSorted = false;
+      }
+    }
+    lastSorted -= 1;
+  }
+
+  return list1;
+}
+
+//Insertion Sort
+
+function insertionSort(list1) {
+  var inserLen = list1.length;
+
+  var lastSorted_ins = inserLen - 1;
+
+  for (let i = 1; i < inserLen; i++) {
+    var key = list1[i];
+    for (let j = i - 1; j >= 0; j--) {
+      if (list1[j] > key) {
+        list1[j + 1] = list1[j];
+        list1[j] = key;
+        //displaying the simulation going on
+        console.log(list1);
+      }
     }
   }
+  // console.log(list1);
+  return list1;
 }
 
-sortButton.addEventListener("click", function () {
-  numList.sort(function (a, b) {
-    return a - b;
-  });
+// connecting functions to the button
 
-  afterSort.innerHTML = numList;
-  draw_chart(numList);
+//btn1 =Bubble Sort
+
+btn1.addEventListener("click", function () {
+  var BubbleSortedList = BubbleSort(list1);
+
+  BubbleElement.innerHTML = BubbleSortedList;
 });
 
-function BubbleSort() {
-  let length = numList.length;
-  for (let i = 1; i < length; i++) {
-    let key = numList[i];
-    let j = i - 1;
-    while (j >= 0 && numList[j] > key) {
-      numList[j + 1] = numList[j];
-      j = j - 1;
-    }
-    numList[j + 1] = key;
-  }
-  return numList;
-}
-
-BubbleBtn.addEventListener("click", function () {
-  BubbleSort();
-  afterSort.innerHTML = numList;
+//btn2 = Insertion Sort
+btn2.addEventListener("click", function () {
+  var insertSortedList = insertionSort(list1);
+  InsertElement.innerHTML = insertSortedList;
 });
-
-// buidling chart chart
-
-function draw_chart(a) {
-  var chart = new Chart(myChart, {
-    //type of the chart
-    type: "bar",
-    data: {
-      labels: a,
-      datasets: [
-        {
-          label: "My first chart drawing",
-          background: "rgb(255, 99, 132)",
-          data: a,
-        },
-      ],
-    },
-
-    options: { responsive: false },
-  });
-}

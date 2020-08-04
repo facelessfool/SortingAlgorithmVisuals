@@ -4,22 +4,31 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
+    <title>Sorting Visualizer</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <link rel="stylesheet" href="" />
   </head>
   <body>
-    <h2 id="num-space">Enter numbers</h2>
+    <div class="container">
+      <h2 class="numbers"></h2>
 
-    <h3 class="numbersEntered">:</h3>
-    <input type="text" id="num-box" />
-    <input type="button" value="sort" id="sortButton" />
-    <input type="button" value="BubbleSort" id="Bubble" />
-    <p>After sorting =></p>
-    <h3 class="afterSort">:</h3>
-    <canvas id="myChart" width="500" height="450"></canvas>
-    <script src="sorter.js" async defer></script>
+      <div class="buttons">
+        <button class="btn1">Bubble Sort</button>
+        <button class="btn2">Insertion Sort</button>
+      </div>
+      <div class="bubble">
+        <h3>After Bubble Sort:</h3>
+
+        <div class="bubbleSort"></div>
+      </div>
+      <div class="insertion">
+        <h3>After Insertion Sort:</h3>
+
+        <div class="insertionSort"></div>
+      </div>
+    </div>
+
+    <script src="./sorter.js"></script>
   </body>
 </html>
