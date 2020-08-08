@@ -114,7 +114,7 @@ async function BubbleSort(list2) {
 
 //Insertion Sort
 
-function insertionSort(list1) {
+async function insertionSort(list1) {
   var inserLen = list1.length;
 
   var lastSorted_ins = inserLen - 1;
@@ -126,7 +126,11 @@ function insertionSort(list1) {
         list1[j + 1] = list1[j];
         list1[j] = key;
         //displaying the simulation going on
-        console.log(list1);
+        // console.log(list1);
+        chart.data.datasets[0].data[j] = list1[j];
+        chart.data.datasets[0].data[j + 1] = list1[j + 1];
+        await sleep(5);
+        chart.update();
       }
     }
   }
@@ -147,5 +151,5 @@ btn1.addEventListener("click", function () {
 //btn2 = Insertion Sort
 btn2.addEventListener("click", function () {
   var insertSortedList = insertionSort(list1);
-  InsertElement.innerHTML = insertSortedList;
+  // InsertElement.innerHTML = insertSortedList;
 });
