@@ -1,9 +1,8 @@
 # SortingAlgorithmVisuals
 
-Goal: 
-
-  #Not following any guided tutorials. 
-  #learn chart.js along the way
+        Goal: 
+              Not following any guided tutorials. 
+              learn chart.js along the way
             
             Not the final version. Work is still in progress.
   
