@@ -1,7 +1,7 @@
 # SortingAlgorithmVisuals
 
         Goal: 
-              Not following any guided tutorials. 
+              Not following any tutorial. 
               learn chart.js along the way
             
         The following doesn't represent the final version. 
