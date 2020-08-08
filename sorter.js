@@ -1,24 +1,28 @@
 var NumList = document.querySelector(".numbers");
 var BubbleElement = document.querySelector(".bubbleSort");
 var InsertElement = document.querySelector(".insertionSort");
-var myChart = document.querySelector(".myChart");
+var myChart = document.querySelector(".myChart").getContext("2d");
 var btn1 = document.querySelector(".btn1");
 var btn2 = document.querySelector(".btn2");
-var listoflists = [];
+
 //generate random numbers
 
 function RandomNumberGen(n) {
   var nums = [];
   while (nums.length < n) {
-    var r = Math.floor(Math.random() * 100) + 1;
+    var r = Math.floor(Math.random() * 1000) + 1;
     if (nums.indexOf(r) === -1) nums.push(r);
   }
   console.log("random num: ", nums);
   return nums;
 }
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-var list1 = RandomNumberGen(10);
-NumList.innerHTML = list1;
+var list1 = RandomNumberGen(100);
+
+// NumList.innerHTML = list1;
 
 //chart
 
@@ -30,28 +34,45 @@ var chart = new Chart(myChart, {
     datasets: [
       {
         label: "numbers",
-        background: "rgb(255, 99, 132)",
+
+        backgroundColor: "rgb(255, 99, 132)",
         data: list1,
       },
     ],
   },
 
-  options: { responsive: false },
+  options: {
+    animation: {
+      duration: 0,
+    },
+    responsive: true,
+  },
 });
 
-function updateChart(newList) {
-  var n = newList.length;
+//Add data
+// function addData(chart, label, data1) {
+//   var n = data1.length;
+//   // chart.data.labels = label;
+//   // for (let i = 0; i < n; i++) {
+//   //   chart.data.datasets[0].data[i] = data1[i];
 
-  for (let i = 0; i < n; i++) {
-    chart.data.datasets[0].data = newList[i];
+//   //   chart.options.animation.duration = 0;
+//   // }
+//   chart.update();
+//   return;
+//   // chart.data.datasets.data = data;
+// }
 
-    setInterval(() => {
-      chart.update();
-    }, 2000);
-  }
+//swap function
+
+function swap2(listS, index) {
+  var temp = listS[index];
+  listS[index] = listS[index + 1];
+  listS[index + 1] = temp;
 }
 //Bubble Sort
-function BubbleSort(list1) {
+
+async function BubbleSort(list2) {
   var len = list1.length;
   var lastSorted = len - 1;
 
@@ -63,23 +84,32 @@ function BubbleSort(list1) {
     for (let i = 0; i < lastSorted; i++) {
       //display the simulation taking place
 
-      // console.log(list1);
-      listoflists.push(list1);
+      // alert(list2);
 
-      console.log("list of lists:", listoflists);
-      if (list1[i] > list1[i + 1]) {
-        var temp = list1[i];
-        list1[i] = list1[i + 1];
-        list1[i + 1] = temp;
+      // console.log("list3: ", list3);
+
+      // count += 1;
+      // console.log("count: ", count);
+      // console.log("list of list is:", listofLists);
+      // InsertElement.innerHTML = list2;
+
+      if (list2[i] > list2[i + 1]) {
+        swap2(list2, i);
+        chart.data.datasets[0].data[i] = list2[i];
+        chart.data.datasets[0].data[i + 1] = list2[i + 1];
+        await sleep(5);
+        chart.update();
+        // addData(chart, list2, list2);
+        // setInterval(drawChart(list2), 1000);
+
         isSorted = false;
       }
     }
+
     lastSorted -= 1;
   }
 
-  updateChart(listoflists);
-
-  return list1;
+  return list2;
 }
 
 //Insertion Sort
@@ -110,8 +140,8 @@ function insertionSort(list1) {
 
 btn1.addEventListener("click", function () {
   var BubbleSortedList = BubbleSort(list1);
-
-  BubbleElement.innerHTML = BubbleSortedList;
+  console.log(BubbleSortedList);
+  // BubbleElement.innerHTML = BubbleSortedList;
 });
 
 //btn2 = Insertion Sort
