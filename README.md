@@ -4,7 +4,8 @@
               Not following any guided tutorials. 
               learn chart.js along the way
             
-            Not the final version. Work is still in progress.
+        The following doesn't represent the final version. 
+        Work is still in progress.
   
 demo: https://kachingsubam.github.io/SortingAlgorithmVisuals/
  
