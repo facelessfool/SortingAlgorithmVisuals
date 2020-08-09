@@ -95,8 +95,8 @@ async function BubbleSort(list2) {
 
       if (list2[i] > list2[i + 1]) {
         swap2(list2, i);
-        chart.data.datasets[0].data[i] = list2[i];
-        chart.data.datasets[0].data[i + 1] = list2[i + 1];
+//         chart.data.datasets[0].data[i] = list2[i];
+//         chart.data.datasets[0].data[i + 1] = list2[i + 1];
         await sleep(20);
         chart.update();
         // addData(chart, list2, list2);
