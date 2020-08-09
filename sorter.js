@@ -97,7 +97,7 @@ async function BubbleSort(list2) {
         swap2(list2, i);
         chart.data.datasets[0].data[i] = list2[i];
         chart.data.datasets[0].data[i + 1] = list2[i + 1];
-        await sleep(8);
+        await sleep(10);
         chart.update();
         // addData(chart, list2, list2);
         // setInterval(drawChart(list2), 1000);
