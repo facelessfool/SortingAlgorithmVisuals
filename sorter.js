@@ -4,6 +4,7 @@ var InsertElement = document.querySelector(".insertionSort");
 var myChart = document.querySelector(".myChart").getContext("2d");
 var btn1 = document.querySelector(".btn1");
 var btn2 = document.querySelector(".btn2");
+var btn3 = document.querySelector(".btn3");
 
 //generate random numbers
 
@@ -138,6 +139,40 @@ async function insertionSort(list1) {
   return list1;
 }
 
+async function mergeSort(arr) {
+  if (arr.length === 1) {
+    // return once we hit an array with a single item
+    return arr;
+  }
+
+  const middle = Math.floor(arr.length / 2); // get the middle item of the array rounded down
+  const left = arr.slice(0, middle); // items on the left side
+  const right = arr.slice(middle); // items on the right side
+
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+// compare the arrays item by item and return the concatenated result
+async function merge(left, right) {
+  let result = [];
+  let indexLeft = 0;
+  let indexRight = 0;
+
+  while (indexLeft < left.length && indexRight < right.length) {
+    if (left[indexLeft] < right[indexRight]) {
+      // await sleep(5);
+      // chart.update();
+      result.push(left[indexLeft]);
+      indexLeft++;
+    } else {
+      result.push(right[indexRight]);
+      indexRight++;
+    }
+  }
+
+  return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
+}
+
 // connecting functions to the button
 
 //btn1 =Bubble Sort
@@ -151,5 +186,11 @@ btn1.addEventListener("click", function () {
 //btn2 = Insertion Sort
 btn2.addEventListener("click", function () {
   var insertSortedList = insertionSort(list1);
+  // InsertElement.innerHTML = insertSortedList;
+});
+
+btn3.addEventListener("click", function () {
+  var mergeSortedList = mergeSort(list1);
+  console.log("merge sorted: ", mergeSortedList);
   // InsertElement.innerHTML = insertSortedList;
 });
