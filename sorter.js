@@ -172,7 +172,19 @@ async function merge(left, right) {
 
   return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
 }
-
+function quickSort(items, left, right) {
+    var index;
+    if (items.length > 1) {
+        index = partition(items, left, right); //index returned from partition
+        if (left < index - 1) { //more elements on the left side of the pivot
+            quickSort(items, left, index - 1);
+        }
+        if (index < right) { //more elements on the right side of the pivot
+            quickSort(items, index, right);
+        }
+    }
+    return items;
+}
 // connecting functions to the button
 
 //btn1 =Bubble Sort
