@@ -139,38 +139,62 @@ async function insertionSort(list1) {
   return list1;
 }
 
-async function mergeSort(arr) {
-  if (arr.length === 1) {
-    // return once we hit an array with a single item
-    return arr;
+//Merge sort
+
+async function mergeSort(list1) {
+  var sorted = list1.slice(),
+    n = sorted.length,
+    buffer = new Array(n);
+
+  for (var size = 1; size < n; size *= 2) {
+    for (var leftStart = 0; leftStart < n; leftStart += 2 * size) {
+      var left = leftStart,
+        right = Math.min(left + size, n),
+        leftLimit = right,
+        rightLimit = Math.min(right + size, n),
+        i = left;
+      while (left < leftLimit && right < rightLimit) {
+        if (sorted[left] <= sorted[right]) {
+          buffer[i++] = sorted[left++];
+        } else {
+          buffer[i++] = sorted[right++];
+        }
+        // console.log("buffer in first while=> ", buffer);
+      }
+      while (left < leftLimit) {
+        buffer[i++] = sorted[left++];
+      }
+      while (right < rightLimit) {
+        buffer[i++] = sorted[right++];
+      }
+
+      // console.log(" chart data : ", chart.data.datasets[0].data);
+      list1 = sorted;
+      chart.data.datasets[0].data = list1;
+      // console.log("list before: ", list1);
+
+      console.log("list after : ", list1);
+      await sleep(30);
+      chart.update();
+      // await sleep(20);
+
+      console.log("buffer outside while: ", buffer);
+    }
+
+    var temp = sorted,
+      sorted = buffer,
+      buffer = temp;
+    list1 = sorted;
+    chart.data.datasets[0].data = list1;
+    await sleep(250);
+    chart.update();
   }
 
-  const middle = Math.floor(arr.length / 2); // get the middle item of the array rounded down
-  const left = arr.slice(0, middle); // items on the left side
-  const right = arr.slice(middle); // items on the right side
-
-  return merge(mergeSort(left), mergeSort(right));
+  return sorted;
 }
 
-// compare the arrays item by item and return the concatenated result
-async function merge(left, right) {
-  let result = [];
-  let indexLeft = 0;
-  let indexRight = 0;
-
-  while (indexLeft < left.length && indexRight < right.length) {
-    if (left[indexLeft] < right[indexRight]) {
-      await sleep(5);
-      chart.update();
-      result.push(left[indexLeft]);
-      indexLeft++;
-    } else {
-      result.push(right[indexRight]);
-      indexRight++;
-    }
-  }
-
-  return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
+function print(s) {
+  document.write(s + "<br />");
 }
 
 // connecting functions to the button
@@ -191,6 +215,6 @@ btn2.addEventListener("click", function () {
 
 btn3.addEventListener("click", function () {
   var mergeSortedList = mergeSort(list1);
-  console.log("merge sorted: ", mergeSortedList);
+  console.log("merge sorted: ", list1);
   // InsertElement.innerHTML = insertSortedList;
 });
