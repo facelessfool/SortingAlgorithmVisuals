@@ -186,7 +186,7 @@ async function mergeSort(list1) {
       buffer = temp;
     list1 = sorted;
     chart.data.datasets[0].data = list1;
-    await sleep(250);
+    await sleep(150);
     chart.update();
   }
 
