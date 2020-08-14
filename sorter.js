@@ -5,6 +5,7 @@ var myChart = document.querySelector(".myChart").getContext("2d");
 var btn1 = document.querySelector(".btn1");
 var btn2 = document.querySelector(".btn2");
 var btn3 = document.querySelector(".btn3");
+var btn4 = document.querySelector(".btn4");
 
 //generate random numbers
 
@@ -176,6 +177,7 @@ async function mergeSort(list1) {
       // console.log("list after : ", list1);
       await sleep(30);
       chart.update();
+
       // await sleep(20);
 
       // console.log("buffer outside while: ", buffer);
@@ -191,6 +193,50 @@ async function mergeSort(list1) {
   }
 
   return sorted;
+}
+
+//quicksort
+
+function quickSort(initArray, metaLeft, metaRight) {
+  if (initArray.length <= 1) {
+    return initArray;
+  } else {
+    var left = [];
+    var right = [];
+    var newArray = [];
+    var pivot = initArray.pop();
+    var length = initArray.length;
+
+    for (var i = 0; i < length; i++) {
+      if (initArray[i] <= pivot) {
+        left.push(initArray[i]);
+      } else {
+        right.push(initArray[i]);
+      }
+    }
+
+    list1 = [].concat(metaLeft, left, pivot, right, metaRight);
+    console.log("list1 is: ", list1);
+
+    chart.data.datasets[0].data = list1;
+    chart.update();
+
+    console.log([].concat(metaLeft, left, pivot, right, metaRight));
+    var sortedLeft = quickSort(
+      left,
+      metaLeft,
+      [pivot].concat(right, metaRight)
+    );
+    var sortedRight = quickSort(
+      right,
+      metaLeft.concat(sortedLeft, pivot),
+      metaRight
+    );
+    // await sleep(100);
+    // chart.update();
+    // console.log(newArray.concat(sortedLeft, pivot, sortedRight));
+    return newArray.concat(sortedLeft, pivot, sortedRight);
+  }
 }
 
 // connecting functions to the button
@@ -212,5 +258,13 @@ btn2.addEventListener("click", function () {
 btn3.addEventListener("click", function () {
   var mergeSortedList = mergeSort(list1);
   console.log("merge sorted: ", list1);
+  // InsertElement.innerHTML = insertSortedList;
+});
+
+btn4.addEventListener("click", function () {
+  // alert("quick sort clicked!");
+  var QuickSortedList = quickSort(list1, [], []);
+
+  console.log("quick sorted: ", QuickSortedList);
   // InsertElement.innerHTML = insertSortedList;
 });
