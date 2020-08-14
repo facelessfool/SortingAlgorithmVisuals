@@ -173,12 +173,12 @@ async function mergeSort(list1) {
       chart.data.datasets[0].data = list1;
       // console.log("list before: ", list1);
 
-      console.log("list after : ", list1);
+      // console.log("list after : ", list1);
       await sleep(30);
       chart.update();
       // await sleep(20);
 
-      console.log("buffer outside while: ", buffer);
+      // console.log("buffer outside while: ", buffer);
     }
 
     var temp = sorted,
@@ -190,18 +190,9 @@ async function mergeSort(list1) {
     chart.update();
   }
 
-<<<<<<< HEAD
   return sorted;
 }
 
-function print(s) {
-  document.write(s + "<br />");
-}
-
-=======
-  return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
-} 
->>>>>>> 175b024855851b2f4637e7b22de7291ce293f148
 // connecting functions to the button
 
 //btn1 =Bubble Sort
