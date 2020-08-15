@@ -8,17 +8,64 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="container">
       <h2 class="numbers"></h2>
 
       <div class="buttons">
-        <button class="btn1">Bubble Sort</button>
-        <button class="btn2">Insertion Sort</button>
-        <button class="btn3">Merge Sort</button>
-        <button class="btn4">Reset</button>
+        <button class="btn1 btn btn-info">Bubble Sort</button>
+        <button class="btn2 btn btn-warning">Insertion Sort</button>
+        <button class="btn3 btn btn btn-secondary">Merge Sort</button>
+        <button class="btn4 btn btn-outline-success">Reset</button>
+        <p class="status" style="float: right;"></p>
+      </div>
+
+    
+      <form style="margin-top: 1.5%;"  action="" method="post">
+        <label for="select1">Select Array size</label>
+        <select name="select1" id="select1">
+          <option value="value1">10</option>
+          <option value="value2">20</option>
+          <option value="value3">30</option>
+          <option value="value4">40</option>
+          <option value="value5">50</option>
+          <option value="value6">60</option>
+          <option value="value7">70</option>
+          <option value="value8">80</option>
+          <option value="value9">90</option>
+          <option value="value10">100</option>
+        </select>
+        <!-- <input type="submit" btn btn-outline-success name="submit" id="submit" value="Go" onclick="changeValue();"/> -->
+      </form>
+      <button style="margin-left: 19%;"  class="btn5 btn btn-outline-success">Go</button>
+      <p style="text-align: center;margin-left: 0%; " class="title"></p>
+
+      <!-- <p class="arrayS">Array Size=100</p> -->
+        <!-- <button class="btn5 btn btn-outline-success">Submit</button> -->
       </div>
       <div class="bubble">
         <!-- <h3>After Bubble Sort:</h3> -->
@@ -32,7 +79,7 @@
       </div>
       <div
         class="chartContainer"
-        style="position: relative; height: 40vh; width: 80vw;"
+        style="position: relative; height: 40vh; width: 80vw; margin-top: 0;"
       >
         <canvas class="myChart"></canvas>
       </div>
