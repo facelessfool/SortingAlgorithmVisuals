@@ -6,6 +6,10 @@ var btn1 = document.querySelector(".btn1");
 var btn2 = document.querySelector(".btn2");
 var btn3 = document.querySelector(".btn3");
 var btn4 = document.querySelector(".btn4");
+var bubble1 = false;
+var insert1 = false;
+var merge1 = false;
+var reset = 0;
 
 //generate random numbers
 
@@ -75,6 +79,7 @@ function swap2(listS, index) {
 //Bubble Sort
 
 async function BubbleSort(list2) {
+  bubble1 = true;
   var len = list1.length;
   var lastSorted = len - 1;
 
@@ -100,6 +105,9 @@ async function BubbleSort(list2) {
         chart.data.datasets[0].data[i] = list2[i];
         chart.data.datasets[0].data[i + 1] = list2[i + 1];
         await sleep(5);
+        if (reset == 1) {
+          return;
+        }
         chart.update();
         // addData(chart, list2, list2);
         // setInterval(drawChart(list2), 1000);
@@ -117,6 +125,7 @@ async function BubbleSort(list2) {
 //Insertion Sort
 
 async function insertionSort(list1) {
+  insert1 = true;
   var inserLen = list1.length;
 
   var lastSorted_ins = inserLen - 1;
@@ -132,6 +141,9 @@ async function insertionSort(list1) {
         chart.data.datasets[0].data[j] = list1[j];
         chart.data.datasets[0].data[j + 1] = list1[j + 1];
         await sleep(5);
+        if (reset) {
+          return;
+        }
         chart.update();
       }
     }
@@ -143,6 +155,7 @@ async function insertionSort(list1) {
 //Merge sort
 
 async function mergeSort(list1) {
+  merge1 = true;
   var sorted = list1.slice(),
     n = sorted.length,
     buffer = new Array(n);
@@ -176,6 +189,9 @@ async function mergeSort(list1) {
 
       // console.log("list after : ", list1);
       await sleep(30);
+      if (reset) {
+        return;
+      }
       chart.update();
 
       // await sleep(20);
@@ -201,20 +217,52 @@ async function mergeSort(list1) {
 
 //btn1 =Bubble Sort
 
-btn1.addEventListener("click", function () {
-  var BubbleSortedList = BubbleSort(list1);
-  console.log(BubbleSortedList);
+btn1.addEventListener("click", async function () {
+  console.log("insert1: ", insert1);
+  console.log(" merge1 : ", merge1);
+  if (insert1 || merge1) {
+    console.log("busy");
+  } else {
+    var BubbleSortedList = BubbleSort(list1);
+    await sleep(5000);
+    bubble1 = false;
+    console.log(BubbleSortedList);
+  }
+
   // BubbleElement.innerHTML = BubbleSortedList;
 });
 
 //btn2 = Insertion Sort
-btn2.addEventListener("click", function () {
-  var insertSortedList = insertionSort(list1);
+btn2.addEventListener("click", async function () {
+  if (bubble1 || merge1) {
+    console.log("busy");
+  } else {
+    var insertSortedList = insertionSort(list1);
+    await sleep(5000);
+    insert1 = false;
+  }
+
   // InsertElement.innerHTML = insertSortedList;
 });
 
-btn3.addEventListener("click", function () {
-  var mergeSortedList = mergeSort(list1);
-  console.log("merge sorted: ", list1);
+btn3.addEventListener("click", async function () {
+  if (bubble1 || insert1) {
+    console.log("busy");
+  } else {
+    var mergeSortedList = mergeSort(list1);
+    await sleep(5000);
+    merge1 = false;
+  }
+
+  // console.log("merge sorted: ", list1);
   // InsertElement.innerHTML = insertSortedList;
+});
+
+btn4.addEventListener("click", async () => {
+  reset = 1;
+  list1 = RandomNumberGen(100);
+  chart.data.datasets[0].data = list1;
+  chart.update();
+  await sleep(5000);
+  reset = 0;
 });
