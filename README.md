@@ -1,8 +1,6 @@
 # SortingAlgorithmVisuals
 
-        Goal: 
-              Build from scratch. 
-              learn chart.js along the way
+        
             
         The following doesn't represent the final version. 
         Work is still in progress.
