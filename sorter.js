@@ -250,7 +250,7 @@ async function mergeSort(list1) {
 btn1.addEventListener("click", async function () {
   if (insert1 || merge1) {
     statusMsg.innerHTML = "Please Wait or press Reset";
-    await sleep(1500);
+    await sleep(2000);
     statusMsg.innerHTML = "";
 
     console.log("busy");
@@ -268,7 +268,7 @@ btn1.addEventListener("click", async function () {
 btn2.addEventListener("click", async function () {
   if (bubble1 || merge1) {
     statusMsg.innerHTML = "Please Wait or press Reset";
-    await sleep(1500);
+    await sleep(2000);
     statusMsg.innerHTML = "";
 
     console.log("busy");
@@ -284,7 +284,7 @@ btn3.addEventListener("click", async function () {
   if (bubble1 || insert1) {
     console.log("busy");
     statusMsg.innerHTML = "Please Wait or press Reset";
-    await sleep(1500);
+    await sleep(2000);
     statusMsg.innerHTML = "";
   } else {
     console.log("merge sort before");
@@ -314,7 +314,7 @@ btn4.addEventListener("click", async () => {
 btn5.addEventListener("click", async () => {
   if (merge1 || insert1 || bubble1) {
     statusMsg.innerHTML = "Please Wait or press Reset";
-    await sleep(1500);
+    await sleep(2000);
     statusMsg.innerHTML = "";
 
     return;
