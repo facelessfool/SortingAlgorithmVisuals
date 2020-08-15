@@ -188,7 +188,7 @@ async function mergeSort(list1) {
       buffer = temp;
     list1 = sorted;
     chart.data.datasets[0].data = list1;
-    await sleep(150);
+    await sleep(250);
     chart.update();
   }
 
@@ -196,48 +196,6 @@ async function mergeSort(list1) {
 }
 
 //quicksort
-
-function quickSort(initArray, metaLeft, metaRight) {
-  if (initArray.length <= 1) {
-    return initArray;
-  } else {
-    var left = [];
-    var right = [];
-    var newArray = [];
-    var pivot = initArray.pop();
-    var length = initArray.length;
-
-    for (var i = 0; i < length; i++) {
-      if (initArray[i] <= pivot) {
-        left.push(initArray[i]);
-      } else {
-        right.push(initArray[i]);
-      }
-    }
-
-    list1 = [].concat(metaLeft, left, pivot, right, metaRight);
-    console.log("list1 is: ", list1);
-
-    chart.data.datasets[0].data = list1;
-    chart.update();
-
-    console.log([].concat(metaLeft, left, pivot, right, metaRight));
-    var sortedLeft = quickSort(
-      left,
-      metaLeft,
-      [pivot].concat(right, metaRight)
-    );
-    var sortedRight = quickSort(
-      right,
-      metaLeft.concat(sortedLeft, pivot),
-      metaRight
-    );
-    // await sleep(100);
-    // chart.update();
-    // console.log(newArray.concat(sortedLeft, pivot, sortedRight));
-    return newArray.concat(sortedLeft, pivot, sortedRight);
-  }
-}
 
 // connecting functions to the button
 
@@ -258,13 +216,5 @@ btn2.addEventListener("click", function () {
 btn3.addEventListener("click", function () {
   var mergeSortedList = mergeSort(list1);
   console.log("merge sorted: ", list1);
-  // InsertElement.innerHTML = insertSortedList;
-});
-
-btn4.addEventListener("click", function () {
-  // alert("quick sort clicked!");
-  var QuickSortedList = quickSort(list1, [], []);
-
-  console.log("quick sorted: ", QuickSortedList);
   // InsertElement.innerHTML = insertSortedList;
 });
