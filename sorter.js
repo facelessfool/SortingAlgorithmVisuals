@@ -104,10 +104,13 @@ async function BubbleSort(list2) {
         swap2(list2, i);
         chart.data.datasets[0].data[i] = list2[i];
         chart.data.datasets[0].data[i + 1] = list2[i + 1];
-        await sleep(5);
+
         if (reset == 1) {
+          bubble1 = false;
+          reset = 0;
           return;
         }
+        await sleep(5);
         chart.update();
         // addData(chart, list2, list2);
         // setInterval(drawChart(list2), 1000);
@@ -140,10 +143,13 @@ async function insertionSort(list1) {
         // console.log(list1);
         chart.data.datasets[0].data[j] = list1[j];
         chart.data.datasets[0].data[j + 1] = list1[j + 1];
-        await sleep(5);
+
         if (reset) {
+          insert1 = false;
+          reset = 0;
           return;
         }
+        await sleep(5);
         chart.update();
       }
     }
@@ -188,10 +194,13 @@ async function mergeSort(list1) {
       // console.log("list before: ", list1);
 
       // console.log("list after : ", list1);
-      await sleep(30);
+
       if (reset) {
+        merge1 = false;
+        reset = 0;
         return;
       }
+      await sleep(30);
       chart.update();
 
       // await sleep(20);
@@ -204,6 +213,10 @@ async function mergeSort(list1) {
       buffer = temp;
     list1 = sorted;
     chart.data.datasets[0].data = list1;
+    if (reset) {
+      reset = 0;
+      return;
+    }
     await sleep(250);
     chart.update();
   }
@@ -224,6 +237,7 @@ btn1.addEventListener("click", async function () {
     console.log("busy");
   } else {
     var BubbleSortedList = BubbleSort(list1);
+
     await sleep(5000);
     bubble1 = false;
     console.log(BubbleSortedList);
@@ -258,11 +272,10 @@ btn3.addEventListener("click", async function () {
   // InsertElement.innerHTML = insertSortedList;
 });
 
-btn4.addEventListener("click", async () => {
+btn4.addEventListener("click", () => {
   reset = 1;
   list1 = RandomNumberGen(100);
   chart.data.datasets[0].data = list1;
   chart.update();
-  await sleep(5000);
-  reset = 0;
+  // await sleep(1);
 });
