@@ -16,5 +16,5 @@ demo: https://kachingsubam.github.io/SortingAlgorithmVisuals/
      implement 
           a)Bubble Sort
           b)Insertion Sort
-          c)Quick Sort
-          d)Merge Sort 
+          c)Merge Sort 
+         
