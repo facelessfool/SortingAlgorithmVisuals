@@ -23,7 +23,9 @@ var bubble1 = false;
 var insert1 = false;
 var merge1 = false;
 var reset = 0;
-
+var bcount = 0;
+var icount = 0;
+var mcount = 0;
 //generate random numbers
 
 function RandomNumberGen(n) {
@@ -120,6 +122,7 @@ async function BubbleSort(list2) {
 
         if (reset == 1) {
           bubble1 = false;
+          bcount = 0;
           reset = 0;
           return;
         }
@@ -136,6 +139,7 @@ async function BubbleSort(list2) {
   }
 
   bubble1 = false;
+  bcount = 0;
   return list2;
 }
 
@@ -159,6 +163,7 @@ async function insertionSort(list1) {
         chart.data.datasets[0].data[j + 1] = list1[j + 1];
 
         if (reset) {
+          icount = 0;
           insert1 = false;
           reset = 0;
           return;
@@ -170,6 +175,7 @@ async function insertionSort(list1) {
   }
   // console.log(list1);
   insert1 = false;
+  icount = 0;
 
   return list1;
 }
@@ -212,6 +218,7 @@ async function mergeSort(list1) {
       // console.log("list after : ", list1);
 
       if (reset) {
+        mcount = 0;
         merge1 = false;
         reset = 0;
         return;
@@ -230,6 +237,7 @@ async function mergeSort(list1) {
     list1 = sorted;
     chart.data.datasets[0].data = list1;
     if (reset) {
+      mcount = 0;
       merge1 = false;
       reset = 0;
       return;
@@ -237,6 +245,7 @@ async function mergeSort(list1) {
     await sleep(250);
     chart.update();
   }
+  mcount = 0;
   merge1 = false;
   return sorted;
 }
@@ -248,13 +257,14 @@ async function mergeSort(list1) {
 //btn1 =Bubble Sort
 
 btn1.addEventListener("click", async function () {
-  if (insert1 || merge1) {
+  if (insert1 || merge1 || bcount) {
     statusMsg.innerHTML = "Please Wait or press Reset";
     await sleep(2000);
     statusMsg.innerHTML = "";
 
     console.log("busy");
   } else {
+    bcount = 1;
     titleText.innerHTML = "Bubble Sort";
     var BubbleSortedList = BubbleSort(list1);
 
@@ -266,13 +276,14 @@ btn1.addEventListener("click", async function () {
 
 //btn2 = Insertion Sort
 btn2.addEventListener("click", async function () {
-  if (bubble1 || merge1) {
+  if (bubble1 || merge1 || icount) {
     statusMsg.innerHTML = "Please Wait or press Reset";
     await sleep(2000);
     statusMsg.innerHTML = "";
 
     console.log("busy");
   } else {
+    icount = 1;
     titleText.innerHTML = "Insertion Sort";
     var insertSortedList = insertionSort(list1);
   }
@@ -281,12 +292,13 @@ btn2.addEventListener("click", async function () {
 });
 
 btn3.addEventListener("click", async function () {
-  if (bubble1 || insert1) {
+  if (bubble1 || insert1 || mcount) {
     console.log("busy");
     statusMsg.innerHTML = "Please Wait or press Reset";
     await sleep(2000);
     statusMsg.innerHTML = "";
   } else {
+    mcount = 1;
     console.log("merge sort before");
     titleText.innerHTML = "Merge Sort";
     console.log("merge1 value: ", merge1);
