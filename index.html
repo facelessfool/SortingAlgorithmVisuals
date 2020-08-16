@@ -31,38 +31,62 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <style>
+      @media (max-width: 768px) {
+  .btn-responsive {
+    padding:2px 4px;
+    font-size:80%;
+    line-height: 1;
+    border-radius:3px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .btn-responsive {
+    padding:4px 9px;
+    font-size:90%;
+    line-height: 1.2;
+  }
+}
+
+    </style>
   </head>
   <body>
-    <div class="container">
-      <h2 class="numbers"></h2>
 
-      <div class="buttons">
-        <button class="btn1 btn btn-info">Bubble Sort</button>
-        <button class="btn2 btn btn-warning">Insertion Sort</button>
-        <button class="btn3 btn btn btn-secondary">Merge Sort</button>
-        <button class="btn4 btn btn-outline-success">Reset</button>
+    <div class="container">
+
+      <h2 class="numbers"></h2>
+    
+      <div class="buttons" style="white-space: normal;padding:2px 4px;
+      font-size:80%;
+      line-height: 1;
+      border-radius:3px;">
+        <button class="btn1 btn btn-info btn-responsive">Bubble Sort</button>
+        <button class="btn2 btn btn-warning btn-responsive">Insertion Sort</button>
+        <button class="btn3 btn btn btn-secondary btn-responsive">Merge Sort</button>
+        <button class="btn4 btn btn-outline-success btn-responsive">Reset</button>
         <p class="status" style="text-align: left;margin-top: 5%;margin-right: 40%; float: right;"></p>
       </div>
 
     
       <form style="margin-top: 1.5%;"  action="" method="post">
-        <label for="select1">Select Array size</label>
-        <select name="select1" id="select1">
-          <option value="value1">10</option>
-          <option value="value2">20</option>
-          <option value="value3">30</option>
-          <option value="value4">40</option>
-          <option value="value5">50</option>
-          <option value="value6">60</option>
-          <option value="value7">70</option>
-          <option value="value8">80</option>
-          <option value="value9">90</option>
-          <option value="value10">100</option>
+        <label for="select1" class="btn-responsive">Select Array size</label>
+        <select class="btn-responsive" name="select1" id="select1">
+          <option class="btn-responsive" value="value1">10</option>
+          <option class="btn-responsive" value="value2">20</option>
+          <option class="btn-responsive" value="value3">30</option>
+          <option class="btn-responsive" value="value4">40</option>
+          <option class="btn-responsive" value="value5">50</option>
+          <option class="btn-responsive" value="value6">60</option>
+          <option class="btn-responsive" value="value7">70</option>
+          <option class="btn-responsive" value="value8">80</option>
+          <option class="btn-responsive" value="value9">90</option>
+          <option class="btn-responsive" value="value10">100</option>
         </select>
         <!-- <input type="submit" btn btn-outline-success name="submit" id="submit" value="Go" onclick="changeValue();"/> -->
       </form>
-      <button style="margin-left: 19%;"  class="btn5 btn btn-outline-success">Go</button>
-      <p style="text-align: center;margin-left: 0%; " class="title"></p>
+      <button style="margin-left: 19%;"  class="btn5 btn btn-outline-success btn-responsive">Go</button>
+      <p style="text-align: center;margin-left: 0%; " class="title btn-responsive"></p>
 
       <!-- <p class="arrayS">Array Size=100</p> -->
         <!-- <button class="btn5 btn btn-outline-success">Submit</button> -->
