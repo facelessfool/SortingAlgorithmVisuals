@@ -324,6 +324,7 @@ btn5.addEventListener("click", async () => {
     // arrayText.innerHTML = "Array Size =" + arraySize;
     list1 = RandomNumberGen(arraySize);
     chart.data.datasets[0].data = list1;
+    chart.data.labels = list1;
     chart.update();
   }
 
