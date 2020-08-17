@@ -317,6 +317,7 @@ btn4.addEventListener("click", async () => {
   reset = 1;
   list1 = RandomNumberGen(arraySize);
   chart.data.datasets[0].data = list1;
+  titleText.innerHTML = "";
   chart.update();
   await sleep(10);
   reset = 0;
