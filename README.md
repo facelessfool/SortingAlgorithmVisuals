@@ -5,7 +5,7 @@
         The following doesn't represent the final version. 
         Work is still in progress.
   
-demo: https://kachingsubam.github.io/SortingAlgorithmVisuals/
+demo: https://facelessfool.github.io/SortingAlgorithmVisuals/
  
   
 
