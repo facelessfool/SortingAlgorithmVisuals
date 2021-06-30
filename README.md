@@ -9,7 +9,7 @@ demo: https://facelessfool.github.io/SortingAlgorithmVisuals/
  
   
 
-  Build a sorting algorithm visualiser with the following options:
+  Built a sorting algorithm visualiser with the following options:
 
      implement 
           a)Bubble Sort
